@@ -34,6 +34,10 @@ requirements.txt                       Python dependencies
 | Optimized | Q-learning + PSO | Uses Particle Swarm Optimization to tune alpha, gamma, epsilon decay, and minimum epsilon. |
 | Swarm | Q-learning + GWO | Uses Grey Wolf Optimizer-inspired tuning for the swarm-mode policy setup. |
 
+## Algorithm Flow
+
+![Airport luggage robot planning algorithm flow](docs/assets/algorithm-flow.svg)
+
 ## Reported Results
 
 The submitted project report compared the three modes over an approximately 100-second simulation window:
@@ -74,7 +78,6 @@ Run the GUI/environment cell first. The notebook expects the `assets/` folder an
 - The Pygame simulation has three selectable modes: Baseline, Optimized, and Swarm.
 - The notebook includes training cells, optimization cells, offline policy tests, and diagnostics.
 - The included `.pkl` files are trained Q-table artifacts used by the simulation modes.
-- The original report and submission-only documents are intentionally excluded from this portfolio repository.
 
 ## Concepts Demonstrated
 

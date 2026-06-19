@@ -1,0 +1,113 @@
+<svg width="1280" height="760" viewBox="0 0 1280 760" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Airport Luggage Robot Planning Algorithm Flow</title>
+  <desc id="desc">Flow diagram showing airport environment setup, three Q-learning policy training methods, saved Q-table artifacts, simulator mode selection, robot coordination, runtime control, and diagnostics.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M1 1L11 6L1 11V1Z" fill="#334155"/>
+    </marker>
+    <filter id="shadow" x="-12%" y="-18%" width="124%" height="136%">
+      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#0f172a" flood-opacity="0.10"/>
+    </filter>
+    <style>
+      .bg { fill: #f8fafc; }
+      .title { fill: #0f172a; font: 700 32px Arial, Helvetica, sans-serif; }
+      .subtitle { fill: #475569; font: 400 16px Arial, Helvetica, sans-serif; }
+      .box { fill: #ffffff; stroke: #cbd5e1; stroke-width: 2; filter: url(#shadow); }
+      .blue { fill: #eff6ff; stroke: #2563eb; stroke-width: 2; filter: url(#shadow); }
+      .green { fill: #ecfdf5; stroke: #059669; stroke-width: 2; filter: url(#shadow); }
+      .purple { fill: #f5f3ff; stroke: #7c3aed; stroke-width: 2; filter: url(#shadow); }
+      .orange { fill: #fff7ed; stroke: #ea580c; stroke-width: 2; filter: url(#shadow); }
+      .label { fill: #0f172a; font: 700 17px Arial, Helvetica, sans-serif; }
+      .body { fill: #334155; font: 400 14px Arial, Helvetica, sans-serif; }
+      .small { fill: #64748b; font: 400 12px Arial, Helvetica, sans-serif; }
+      .lane { fill: #334155; font: 700 14px Arial, Helvetica, sans-serif; }
+      .arrow { stroke: #334155; stroke-width: 2.4; marker-end: url(#arrow); }
+      .arrow-soft { stroke: #64748b; stroke-width: 2; marker-end: url(#arrow); }
+    </style>
+  </defs>
+
+  <rect class="bg" width="1280" height="760"/>
+  <text class="title" x="54" y="62">Algorithm Flow</text>
+  <text class="subtitle" x="54" y="92">Three training strategies create Q-table policies, then the simulator loads one policy for the airport luggage workflow.</text>
+
+  <text class="lane" x="54" y="142">TRAINING PIPELINE</text>
+
+  <rect class="blue" x="54" y="164" width="226" height="128" rx="12"/>
+  <text class="label" x="78" y="199">Airport Environment</text>
+  <text class="body" x="78" y="228">Grid map and goals</text>
+  <text class="body" x="78" y="252">Blocked areas and walls</text>
+  <text class="body" x="78" y="276">Dynamic obstacles</text>
+
+  <rect class="box" x="348" y="142" width="572" height="214" rx="18"/>
+  <text class="small" x="376" y="172">Policy training branches</text>
+
+  <rect class="green" x="380" y="194" width="160" height="128" rx="12"/>
+  <text class="label" x="404" y="226">Baseline</text>
+  <text class="body" x="404" y="254">Fixed Q-learning</text>
+  <text class="body" x="404" y="278">Plain rewards</text>
+  <text class="body" x="404" y="302">Fewer episodes</text>
+
+  <rect class="purple" x="560" y="194" width="160" height="128" rx="12"/>
+  <text class="label" x="584" y="226">Optimized</text>
+  <text class="body" x="584" y="254">PSO tunes alpha</text>
+  <text class="body" x="584" y="278">gamma and epsilon</text>
+  <text class="body" x="584" y="302">Distance shaping</text>
+
+  <rect class="orange" x="740" y="194" width="160" height="128" rx="12"/>
+  <text class="label" x="764" y="226">Swarm</text>
+  <text class="body" x="764" y="254">GWO tuning</text>
+  <text class="body" x="764" y="278">Swarm-mode params</text>
+  <text class="body" x="764" y="302">Distance shaping</text>
+
+  <rect class="box" x="990" y="164" width="226" height="128" rx="12"/>
+  <text class="label" x="1014" y="199">Q-table Artifacts</text>
+  <text class="body" x="1014" y="228">airport_q_baseline.pkl</text>
+  <text class="body" x="1014" y="252">airport_q_tables.pkl</text>
+  <text class="body" x="1014" y="276">airport_swarm_q_tables.pkl</text>
+
+  <path class="arrow" d="M280 228H348"/>
+  <path class="arrow" d="M920 228H990"/>
+
+  <text class="lane" x="54" y="454">SIMULATION AND EVALUATION</text>
+
+  <rect class="box" x="54" y="480" width="210" height="128" rx="12"/>
+  <text class="label" x="78" y="515">Mode Selection</text>
+  <text class="body" x="78" y="544">Baseline</text>
+  <text class="body" x="78" y="568">Optimized</text>
+  <text class="body" x="78" y="592">Swarm</text>
+
+  <rect class="blue" x="296" y="480" width="210" height="128" rx="12"/>
+  <text class="label" x="320" y="515">Load Policy</text>
+  <text class="body" x="320" y="544">Select matching</text>
+  <text class="body" x="320" y="568">destination Q-table</text>
+  <text class="body" x="320" y="592">for active mode</text>
+
+  <rect class="green" x="538" y="480" width="210" height="128" rx="12"/>
+  <text class="label" x="562" y="515">Robot Pipeline</text>
+  <text class="body" x="562" y="544">R1: check-in -> sorting</text>
+  <text class="body" x="562" y="568">R2: sorting -> gate</text>
+  <text class="body" x="562" y="592">R3: gate -> claim</text>
+
+  <rect class="purple" x="780" y="480" width="210" height="128" rx="12"/>
+  <text class="label" x="804" y="515">Runtime Control</text>
+  <text class="body" x="804" y="544">Greedy Q actions</text>
+  <text class="body" x="804" y="568">Obstacle avoidance</text>
+  <text class="body" x="804" y="592">Loop escape logic</text>
+
+  <rect class="orange" x="1022" y="480" width="210" height="128" rx="12"/>
+  <text class="label" x="1046" y="515">Diagnostics</text>
+  <text class="body" x="1046" y="544">Completed cycles</text>
+  <text class="body" x="1046" y="568">Total robot steps</text>
+  <text class="body" x="1046" y="592">Route traces</text>
+
+  <path class="arrow" d="M264 544H296"/>
+  <path class="arrow" d="M506 544H538"/>
+  <path class="arrow" d="M748 544H780"/>
+  <path class="arrow" d="M990 544H1022"/>
+
+  <path class="arrow-soft" d="M1103 292V390H401V480"/>
+  <text class="small" x="764" y="384">Saved Q-tables are loaded at runtime</text>
+
+  <rect x="54" y="676" width="1178" height="44" rx="10" fill="#e2e8f0" stroke="#cbd5e1"/>
+  <text class="small" x="78" y="702">Main comparison: baseline Q-learning is tested against PSO-tuned and GWO-tuned policies in the same airport luggage transport workflow.</text>
+</svg>
